@@ -14,10 +14,7 @@ namespace TourDeFranceApp.ViewModel
         
         public void loadData()
         {
-            foreach (Cyclist person in )
-            {
-
-            }
+            
            
         }
 

@@ -89,7 +89,8 @@ namespace TourDeFranceApp.Model
                 }
                 else
                 {
-                    Cyclist cyclist = new Cyclist { EndPosition = v.result };
+                    int x = Int32.Parse(v.result);
+                    Cyclist cyclist = new Cyclist { EndPosition = x };
                     ranking.Add(cyclist);
                 }
             }

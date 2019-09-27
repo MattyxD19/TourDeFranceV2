@@ -8,21 +8,55 @@ namespace TourDeFranceApp.Model
 {
     class Cyclist
     {
+        public Cyclist()
+        {
+
+        }
         private string name;
+
+        public string Name
+        {
+            get { return name; }
+            set { name = value; }
+        }
+
         private string gender;
+
+        public string Gender
+        {
+            get { return gender; }
+            set { gender = value; }
+        }
+
         private string country;
+
+        public string Country
+        {
+            get { return country; }
+            set { country = value; }
+        }
+
         private string resultTime;
-        private string endPosition;
 
-        public string Name { get; set; }
+        public string ResultTime
+        {
+            get { return resultTime; }
+            set { resultTime = value; }
+        }
 
-        public string Gender { get; set; }
+        private int endPosition;
 
-        public string Country { get; set; }
+        public int EndPosition
+        {
+            get { return endPosition; }
+            set { endPosition = value; }
+        }
+        
 
-        public string ResultTime { get; set; }
-
-        public string EndPosition { get; set; }
+        public override string ToString()
+        {
+            return "Cyclist: " + Name + " " + Gender+" "+Country+" "+ResultTime+" "+EndPosition;
+        }
 
     }
 }

@@ -23,6 +23,11 @@ namespace TourDeFranceApp
         public MainWindow()
         {
             InitializeComponent();
+            foreach (var cyclist in Model.Parser.CyclistListMaker())
+        	{
+                listViewName.Items.Add(cyclist);
+	        }
+
         }
 
         private void OrderRank_Selected(object sender, RoutedEventArgs e)
