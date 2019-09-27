@@ -14,8 +14,10 @@ namespace TourDeFranceApp.ViewModel
         
         public void loadData()
         {
-            Parser parser = new Parser();
-            List<Cyclist> participantList = new List<Cyclist>();
+            foreach (Cyclist person in )
+            {
+
+            }
            
         }
 
