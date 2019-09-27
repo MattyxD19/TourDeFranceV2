@@ -13,13 +13,15 @@
                     <TextBlock Text="{Binding Path=Name}"></TextBlock>
                 </DataTemplate>
             </ListView>
-
+            <TextBox x:Name="SearchBar" Width="75" Height="25" />
             <ComboBox Name="OrderSelection" Width="75" Height="25" VerticalAlignment="Center">
                 <ComboBoxItem Name="OrderRank" Content="Rank" Selected="OrderRank_Selected"></ComboBoxItem>
                 <ComboBoxItem Name="OrderName" Content="Name" Selected="OrderName_Selected"></ComboBoxItem>
                 <ComboBoxItem Name="OrderCountry" Content="Country" Selected="OrderCountry_Selected"></ComboBoxItem>
                 <ComboBoxItem Name="OrderResultTime" Content="Result" Selected="OrderResultTime_Selected"></ComboBoxItem>
             </ComboBox>
+
+           
         </StackPanel>
     </Grid>
 </Window>

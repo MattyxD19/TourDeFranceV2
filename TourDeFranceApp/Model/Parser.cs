@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Documents;
 using System.Xml;
 using System.Xml.Linq;
 
@@ -49,7 +48,7 @@ namespace TourDeFranceApp.Model
         }
         
         // til at få det andet 
-        public static List CyclistListMaker()
+        public static List<Cyclist> CyclistListMaker()
         {
             string fileName = "Cycling-Tour-De-France.xml";
             XElement root = XElement.Load(fileName);
@@ -77,23 +76,33 @@ namespace TourDeFranceApp.Model
                            result = feed.Attribute("value").Value
 
                         };
-            List<string> ranking = new List<string>();
-            List<string> time = new List<string>();
+            List<Cyclist> ranking = new List<Cyclist>();
+            List<Cyclist> time = new List<Cyclist>();
 
-            foreach (var v in rank)
+            foreach(var v in rank)
             {
-                Console.WriteLine(v);
+
                 if (v.result.Contains(":"))
                 {
-                    time.Add(v.result);
+                    Cyclist cyclist = new Cyclist { ResultTime = v.result };
+                    time.Add(cyclist);
                 }
                 else
                 {
-                    ranking.Add(v.result);
+                    Cyclist cyclist = new Cyclist { EndPosition = v.result };
+                    ranking.Add(cyclist);
                 }
             }
 
-            
+            List<Cyclist> lastList = new List<Cyclist>();
+            for (int i = 0; i < cyclists.Count(); i++)
+            {
+                Cyclist newCyclist = new Cyclist { Name = cyclists.ElementAt(i).Name, Gender = cyclists.ElementAt(i).Gender, Country = cyclists.ElementAt(i).Country, EndPosition = ranking.ElementAt(i).EndPosition, ResultTime = time.ElementAt(i).ResultTime };
+                lastList.Add(newCyclist);
+            }
+
+            return lastList;
+
         }
     }
 }

@@ -16,8 +16,7 @@ namespace TourDeFranceApp.ViewModel
         {
             Parser parser = new Parser();
             List<Cyclist> participantList = new List<Cyclist>();
-            
-
+           
         }
 
     }
