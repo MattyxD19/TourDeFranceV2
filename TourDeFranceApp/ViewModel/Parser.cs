@@ -105,5 +105,57 @@ namespace TourDeFranceApp.Model
             return lastList;
 
         }
+        public static List<StageInfo> StageInfoMaker()
+        {
+            string fileName = "Cycling-Tour-De-France.xml";
+            XElement root = XElement.Load(fileName);
+
+            var sport = from sportName in root.Descendants("sport")
+                        select new
+                        {
+                            sport = sportName.Attribute("name").Value,
+
+                        };
+
+            var stage = from stageInfo in root.Descendants("event")
+                        select new
+                        {
+                            stageName = stageInfo.Attribute("name").Value,
+                            date = stageInfo.Attribute("startdate").Value
+
+                        };
+            List<StageInfo> infos = new List<StageInfo>();
+
+            for (int i = 0; i < stage.Count(); i++)
+            {
+                StageInfo stageInfo1 = new StageInfo { Date = stage.ElementAt(i).date, StageName = stage.ElementAt(i).stageName, Sport = sport.ElementAt(i).sport };
+                infos.Add(stageInfo1);
+            }
+
+
+
+            return infos;
+
+        }
+
+        public static void XMLCreator(List<Cyclist> cyclists)
+        {
+            XDocument xdoc = new XDocument(
+            new XDeclaration("1.0", "utf-8", "yes"),
+            // This is the root of the document
+            new XElement("cyclist",
+            from rider in cyclists
+            select
+            new XElement("rider",
+            new XElement("name"),
+            new XElement("gender"),
+            new XElement("Country"),
+            new XElement("resulttime"),
+            new XElement("rank"))));
+
+            // Write the document to the file system. change to a file you have on your pc.             
+            xdoc.Save(@"C:\Users\mathi\source\repos\TourDeFranceV2\tomTest.xml");
+        }
+
     }
 }

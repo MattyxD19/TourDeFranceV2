@@ -28,7 +28,6 @@ namespace TourDeFranceApp
         	{
                 listViewName.Items.Add(cyclist);
 	        }
-
         }
 
         private void OrderRank_Selected(object sender, RoutedEventArgs e)
@@ -54,18 +53,6 @@ namespace TourDeFranceApp
             }
         }
 
-        private void OrderCountry_Selected(object sender, RoutedEventArgs e)
-        {
-            listViewName.Items.Clear();
-            List<Cyclist> SortedList = Parser.CyclistListMaker().OrderBy(o => o.Country).ToList();
-            var top10 = SortedList.Take(10);
-
-            foreach (var top in top10)
-            {
-                listViewName.Items.Add(top);
-            }
-        }
-
         private void OrderResultTime_Selected(object sender, RoutedEventArgs e)
         {
 
@@ -81,11 +68,42 @@ namespace TourDeFranceApp
 
         private void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
         {
-            //Cyclist findCyclist = new Cyclist();
-            //string searchText = SearchBar.Text;
-            //Convert.ChangeType(searchText, typeof(Object));
-            //listViewName.Items.Clear();
-            //listViewName.Items.Add(Parser.CyclistListMaker().Contains(searchText));
+            Cyclist findName = new Cyclist();
+            var searchText = SearchBar.Text;
+            findName.Name = searchText;
+            listViewName.Items.Clear();
+            //List<Cyclist> searchName = Parser.CyclistListMaker().Equals(findName);
+
+            foreach (var name in Parser.CyclistListMaker())
+            {
+                listViewName.Items.Add(name);
+            }
+
+        }
+
+        private void StageInfo_Selected(object sender, RoutedEventArgs e)
+        {
+            listViewName.Items.Clear();
+            List<StageInfo> infos = Parser.StageInfoMaker();
+            foreach (var item in infos)
+            {
+                listViewName.Items.Add(item);
+            }
+        }
+
+        private void ViewAll_Selected(object sender, RoutedEventArgs e)
+        {
+            foreach (var cyclist in Parser.CyclistListMaker())
+            {
+                listViewName.Items.Add(cyclist);
+            }
+        }
+
+        private void WriteXml_Click(object sender, RoutedEventArgs e)
+        {
+            Parser.XMLCreator(Parser.CyclistListMaker());
+            MessageBoxResult result = MessageBox.Show("A XML document has been written");
+           
         }
     }
 }
